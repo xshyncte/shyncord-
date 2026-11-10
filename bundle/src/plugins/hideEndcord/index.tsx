@@ -15,16 +15,16 @@ import { definePlugin, onSettingChange } from "../api";
 
 const plugin = definePlugin({
     id: "endcord.hide-endcord",
-    name: "HideEndcord",
-    description: tx("Hides Endcord's entries in Discord's settings, for screenshots and screen sharing. Plugins keep working."),
+    name: "HideShyncord",
+    description: tx("Hides Shyncord's entries in Discord's settings, for screenshots and screen sharing. Plugins keep working."),
     popular: 3,
     icon: "EyeSlashIcon",
     tags: ["Privacy", "Utility"],
     settings: {
         hidden: {
             type: "boolean",
-            label: tx("Hide Endcord now"),
-            description: tx("Type /hideendcord in any chat to show Endcord's settings again"),
+            label: tx("Hide Shyncord now"),
+            description: tx("Type /hideshyncord in any chat to show Shyncord's settings again"),
             default: false,
         },
     },
@@ -35,12 +35,12 @@ const plugin = definePlugin({
                 if (key === "hidden") sectionVisibility.hidden = store.hidden;
             }),
             registerCommand({
-                name: "hideendcord",
-                description: t("Show or hide Endcord's entries in Discord's settings"),
+                name: "hideshyncord",
+                description: t("Show or hide Shyncord's entries in Discord's settings"),
                 options: [],
                 execute() {
                     store.hidden = !store.hidden;
-                    showToast(store.hidden ? t("Endcord is hidden from settings") : t("Endcord is shown in settings again"), findAssetId(store.hidden ? "EyeSlashIcon" : "EyeIcon"));
+                    showToast(store.hidden ? t("Shyncord is hidden from settings") : t("Shyncord is shown in settings again"), findAssetId(store.hidden ? "EyeSlashIcon" : "EyeIcon"));
                 },
             }),
             () => sectionVisibility.hidden = false,

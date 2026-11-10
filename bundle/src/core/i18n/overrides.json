@@ -497,12 +497,6 @@
         "es": "Añade un botón junto al cuadro de mensaje y /gameactivity para mostrar u ocultar a qué juegas",
         "fr": "Ajoute un bouton à côté de la zone de message et /gameactivity pour afficher ou masquer ce à quoi vous jouez"
     },
-    "Adds a button beside the message box with Endcord quick actions: reload, turn off plugins, debug info and safe mode": {
-        "tr": "Mesaj kutusunun yanına Endcord hızlı işlemlerini içeren bir düğme ekler: yeniden yükle, eklenti kapat, hata ayıklama bilgisi ve güvenli mod",
-        "ru": "Добавляет кнопку рядом с полем ввода с быстрыми действиями Endcord: перезагрузка, отключение плагинов, отладочная информация и безопасный режим",
-        "es": "Añade un botón junto al cuadro de mensaje con acciones rápidas de Endcord: recargar, desactivar plugins, información de depuración y modo seguro",
-        "fr": "Ajoute un bouton à côté de la zone de message avec les actions rapides d'Endcord : recharger, désactiver des plugins, infos de débogage et mode sans échec"
-    },
     "Adds your signature to the end of every message you send": {
         "tr": "Gönderdiğin her mesajın sonuna imzanı ekler",
         "ru": "Добавляет вашу подпись в конец каждого отправленного сообщения",
@@ -2189,24 +2183,6 @@
         "es": "Termina tus mensajes con un punto.",
         "fr": "Terminer vos messages par un point."
     },
-    "Endcord Toolbox": {
-        "tr": "Endcord Araç Kutusu",
-        "ru": "Инструменты Endcord",
-        "es": "Caja de herramientas de Endcord",
-        "fr": "Boîte à outils Endcord"
-    },
-    "Endcord is hidden from settings": {
-        "tr": "Endcord ayarlardan gizlendi",
-        "ru": "Endcord скрыт из настроек",
-        "es": "Endcord se ha ocultado de los ajustes",
-        "fr": "Endcord est masqué des paramètres"
-    },
-    "Endcord is shown in settings again": {
-        "tr": "Endcord ayarlarda yeniden gösteriliyor",
-        "ru": "Endcord снова показан в настройках",
-        "es": "Endcord vuelve a mostrarse en los ajustes",
-        "fr": "Endcord s'affiche à nouveau dans les paramètres"
-    },
     "Enter a link that starts with https://": {
         "tr": "https:// ile başlayan bir bağlantı gir",
         "ru": "Введите ссылку, начинающуюся с https://",
@@ -2915,12 +2891,6 @@
         "es": "Usuarios ocultos",
         "fr": "Utilisateurs masqués"
     },
-    "Hide Endcord now": {
-        "tr": "Endcord'u şimdi gizle",
-        "ru": "Скрыть Endcord сейчас",
-        "es": "Ocultar Endcord ahora",
-        "fr": "Masquer Endcord maintenant"
-    },
     "Hide Media": {
         "tr": "Medyayı Gizle",
         "ru": "Скрыть медиа",
@@ -3034,12 +3004,6 @@
         "ru": "Скрывать, пока играет Spotify",
         "es": "Ocultar mientras suena Spotify",
         "fr": "Masquer pendant la lecture Spotify"
-    },
-    "Hides Endcord's entries in Discord's settings, for screenshots and screen sharing. Plugins keep working.": {
-        "tr": "Ekran görüntüleri ve ekran paylaşımı için Endcord'un Discord ayarlarındaki bölümlerini gizler. Eklentiler çalışmaya devam eder.",
-        "ru": "Скрывает разделы Endcord в настройках Discord для скриншотов и демонстрации экрана. Плагины продолжают работать.",
-        "es": "Oculta las entradas de Endcord en los ajustes de Discord, para capturas y pantalla compartida. Los plugins siguen funcionando.",
-        "fr": "Masque les entrées d'Endcord dans les paramètres de Discord, pour les captures et le partage d'écran. Les plugins continuent de fonctionner."
     },
     "Hides attachments in age-restricted channels behind a spoiler until you tap them": {
         "tr": "Yaş kısıtlamalı kanallardaki ekleri sen dokunana kadar spoiler arkasında gizler",
@@ -4385,12 +4349,6 @@
         "es": "No",
         "fr": "Non"
     },
-    "No Endcord plugins are on": {
-        "tr": "Açık Endcord eklentisi yok",
-        "ru": "Ни один плагин Endcord не включён",
-        "es": "No hay plugins de Endcord activados",
-        "fr": "Aucun plugin Endcord n'est activé"
-    },
     "No Pokémon called {name} was found.": {
         "tr": "{name} adında bir Pokémon bulunamadı.",
         "ru": "Покемон {name} не найден.",
@@ -4600,12 +4558,6 @@
         "ru": "Не на моих сообщениях",
         "es": "No en mis mensajes",
         "fr": "Pas sur mes messages"
-    },
-    "Not seen online since Endcord started watching": {
-        "tr": "Endcord izlemeye başladığından beri çevrimiçi görülmedi",
-        "ru": "Не появлялся в сети с тех пор, как Endcord начал следить",
-        "es": "No se ha visto conectado desde que Endcord empezó a vigilar",
-        "fr": "Pas vu en ligne depuis qu'Endcord surveille"
     },
     "Not working": {
         "tr": "Çalışmayanlar",
@@ -4906,12 +4858,6 @@
         "ru": "Открыть баннер",
         "es": "Abrir banner",
         "fr": "Ouvrir la bannière"
-    },
-    "Open Endcord's quick actions": {
-        "tr": "Endcord'un hızlı işlemlerini aç",
-        "ru": "Открыть быстрые действия Endcord",
-        "es": "Abre las acciones rápidas de Endcord",
-        "fr": "Ouvrir les actions rapides d'Endcord"
     },
     "Open Sticker Link": {
         "tr": "Çıkartma Bağlantısını Aç",
@@ -6641,12 +6587,6 @@
         "es": "No mostrar nada para las personas desconectadas o invisibles",
         "fr": "Ne rien afficher pour les personnes hors ligne ou invisibles"
     },
-    "Show or hide Endcord's entries in Discord's settings": {
-        "tr": "Endcord'un Discord ayarlarındaki bölümlerini göster veya gizle",
-        "ru": "Показать или скрыть разделы Endcord в настройках Discord",
-        "es": "Mostrar u ocultar las entradas de Endcord en los ajustes de Discord",
-        "fr": "Afficher ou masquer les entrées d'Endcord dans les paramètres de Discord"
-    },
     "Show or hide what you're playing on your profile": {
         "tr": "Profilinde ne oynadığını göster ya da gizle",
         "ru": "Показать или скрыть в профиле, во что вы играете",
@@ -6736,12 +6676,6 @@
         "ru": "Отмечает сообщения людей, находящихся в голосовом канале, и позволяет присоединиться к ним из меню сообщения",
         "es": "Marca los mensajes de quienes están en un canal de voz y te deja unirte a ellos desde el menú del mensaje",
         "fr": "Marque les messages des personnes en salon vocal et vous permet de les rejoindre depuis le menu du message"
-    },
-    "Shows how long Endcord and each of its plugins took to start, in the plugin's settings": {
-        "tr": "Endcord'un ve her eklentisinin açılmasının ne kadar sürdüğünü eklentinin ayarlarında gösterir",
-        "ru": "Показывает в настройках плагина, сколько запускались Endcord и каждый из его плагинов",
-        "es": "Muestra cuánto tardaron en iniciarse Endcord y cada uno de sus plugins, en los ajustes del plugin",
-        "fr": "Affiche le temps de démarrage d'Endcord et de chacun de ses plugins, dans les paramètres du plugin"
     },
     "Shows how long you've spent in voice with each user": {
         "tr": "Her kullanıcıyla seste ne kadar zaman geçirdiğini gösterir",
@@ -7715,12 +7649,6 @@
         "es": "Tipo de tema",
         "fr": "Type de thème"
     },
-    "Themes from the community's theme marketplace and Catppuccin. Installed themes also appear in Endcord's Themes page.": {
-        "tr": "Topluluğun tema pazarından ve Catppuccin'den temalar. Yüklenen temalar Endcord'un Temalar sayfasında da görünür.",
-        "ru": "Темы из магазина тем сообщества и Catppuccin. Установленные темы также появляются на странице «Темы» Endcord.",
-        "es": "Temas del mercado de temas de la comunidad y de Catppuccin. Los temas instalados también aparecen en la página Temas de Endcord.",
-        "fr": "Des thèmes du marché de thèmes de la communauté et de Catppuccin. Les thèmes installés apparaissent aussi dans la page Thèmes d'Endcord."
-    },
     "There's no voice channel to join.": {
         "tr": "Katılınacak ses kanalı yok.",
         "ru": "Нет голосового канала, куда можно зайти.",
@@ -7744,12 +7672,6 @@
         "ru": "Эта резервная копия повреждена и не может быть восстановлена",
         "es": "Esta copia de seguridad está dañada y no se puede restaurar",
         "fr": "Cette sauvegarde est endommagée et ne peut pas être restaurée"
-    },
-    "This backup is from a newer Endcord. Update Endcord, then try again.": {
-        "tr": "Bu yedek daha yeni bir Endcord'dan. Endcord'u güncelleyip tekrar dene.",
-        "ru": "Эта резервная копия из более новой версии Endcord. Обнови Endcord и попробуй снова.",
-        "es": "Esta copia de seguridad es de un Endcord más reciente. Actualiza Endcord y vuelve a intentarlo.",
-        "fr": "Cette sauvegarde vient d'un Endcord plus récent. Mets Endcord à jour, puis réessaie."
     },
     "This channel has no topic.": {
         "tr": "Bu kanalın konusu yok.",
@@ -7780,18 +7702,6 @@
         "ru": "Этот файл слишком большой для просмотра",
         "es": "Este archivo es demasiado grande para mirar dentro",
         "fr": "Ce fichier est trop volumineux pour être exploré"
-    },
-    "This file isn't a theme Endcord can use.": {
-        "tr": "Bu dosya Endcord'un kullanabileceği bir tema değil.",
-        "ru": "Этот файл не является темой, которую может использовать Endcord.",
-        "es": "Este archivo no es un tema que Endcord pueda usar.",
-        "fr": "Ce fichier n'est pas un thème utilisable par Endcord."
-    },
-    "This file isn't an Endcord backup": {
-        "tr": "Bu dosya bir Endcord yedeği değil",
-        "ru": "Этот файл не является резервной копией Endcord",
-        "es": "Este archivo no es una copia de seguridad de Endcord",
-        "fr": "Ce fichier n'est pas une sauvegarde Endcord"
     },
     "This font pack is linked to an address. To edit its fonts yourself, detach it from that link first.": {
         "tr": "Bu yazı tipi paketi bir adrese bağlı. Yazı tiplerini kendin düzenlemek için önce onu bu bağlantıdan ayır.",
@@ -7828,18 +7738,6 @@
         "ru": "Для этого нужна iOS 17 или новее.",
         "es": "Esto necesita iOS 17 o posterior.",
         "fr": "Cela nécessite iOS 17 ou une version ultérieure."
-    },
-    "This needs a newer Endcord. Install the latest Endcord IPA.": {
-        "tr": "Bunun için daha yeni bir Endcord gerekiyor. En son Endcord IPA'sını kur.",
-        "ru": "Для этого нужна более новая версия Endcord. Установите последний IPA Endcord.",
-        "es": "Esto necesita un Endcord más reciente. Instala el IPA de Endcord más reciente.",
-        "fr": "Cela nécessite une version plus récente d'Endcord. Installez le dernier IPA d'Endcord."
-    },
-    "This needs a newer Endcord. Install it again with Endcord Installer.": {
-        "tr": "Bunun için daha yeni bir Endcord gerekiyor. Endcord Installer ile yeniden kur.",
-        "ru": "Для этого нужен более новый Endcord. Установите его заново через Endcord Installer.",
-        "es": "Esto necesita un Endcord más reciente. Vuelve a instalarlo con Endcord Installer.",
-        "fr": "Cela nécessite un Endcord plus récent. Réinstallez-le avec Endcord Installer."
     },
     "This only works in DMs and group DMs.": {
         "tr": "Bu yalnızca DM'lerde ve grup DM'lerinde çalışır.",
@@ -8104,12 +8002,6 @@
         "ru": "Двухбуквенный код страны, например TR или US",
         "es": "Código de país de dos letras, como TR o US",
         "fr": "Code pays à deux lettres, comme TR ou US"
-    },
-    "Type /hideendcord in any chat to show Endcord's settings again": {
-        "tr": "Endcord ayarlarını yeniden göstermek için herhangi bir sohbette /hideendcord yaz",
-        "ru": "Введите /hideendcord в любом чате, чтобы снова показать настройки Endcord",
-        "es": "Escribe /hideendcord en cualquier chat para volver a mostrar los ajustes de Endcord",
-        "fr": "Tapez /hideendcord dans n'importe quelle discussion pour réafficher les paramètres d'Endcord"
     },
     "Type a message to preview it": {
         "tr": "Önizlemek için bir mesaj yaz",
@@ -9764,5 +9656,107 @@
         "es": "Servidor de Discord",
         "fr": "Serveur Discord",
         "vi": "M?y ch? Discord"
+    },
+    "Shyncord Toolbox": {
+        "tr": "Shyncord Araç Kutusu",
+        "ru": "Инструменты Shyncord",
+        "es": "Caja de herramientas de Shyncord",
+        "fr": "Boîte à outils Shyncord"
+    },
+    "Shyncord is hidden from settings": {
+        "tr": "Shyncord ayarlardan gizlendi",
+        "ru": "Shyncord скрыт из настроек",
+        "es": "Shyncord se ha ocultado de los ajustes",
+        "fr": "Shyncord est masqué des paramètres"
+    },
+    "Shyncord is shown in settings again": {
+        "tr": "Shyncord ayarlarda yeniden gösteriliyor",
+        "ru": "Shyncord снова показан в настройках",
+        "es": "Shyncord vuelve a mostrarse en los ajustes",
+        "fr": "Shyncord s'affiche à nouveau dans les paramètres"
+    },
+    "Hide Shyncord now": {
+        "tr": "Shyncord'u şimdi gizle",
+        "ru": "Скрыть Shyncord сейчас",
+        "es": "Ocultar Shyncord ahora",
+        "fr": "Masquer Shyncord maintenant"
+    },
+    "Hides Shyncord's entries in Discord's settings, for screenshots and screen sharing. Plugins keep working.": {
+        "tr": "Ekran görüntüleri ve ekran paylaşımı için Shyncord'un Discord ayarlarındaki bölümlerini gizler. Eklentiler çalışmaya devam eder.",
+        "ru": "Скрывает разделы Shyncord в настройках Discord для скриншотов и демонстрации экрана. Плагины продолжают работать.",
+        "es": "Oculta las entradas de Shyncord en los ajustes de Discord, para capturas y pantalla compartida. Los plugins siguen funcionando.",
+        "fr": "Masque les entrées d'Shyncord dans les paramètres de Discord, pour les captures et le partage d'écran. Les plugins continuent de fonctionner."
+    },
+    "Show or hide Shyncord's entries in Discord's settings": {
+        "tr": "Shyncord'un Discord ayarlarındaki bölümlerini göster veya gizle",
+        "ru": "Показать или скрыть разделы Shyncord в настройках Discord",
+        "es": "Mostrar u ocultar las entradas de Shyncord en los ajustes de Discord",
+        "fr": "Afficher ou masquer les entrées d'Shyncord dans les paramètres de Discord"
+    },
+    "No Shyncord plugins are on": {
+        "tr": "Açık Shyncord eklentisi yok",
+        "ru": "Ни один плагин Shyncord не включён",
+        "es": "No hay plugins de Shyncord activados",
+        "fr": "Aucun plugin Shyncord n'est activé"
+    },
+    "Open Shyncord's quick actions": {
+        "tr": "Shyncord'un hızlı işlemlerini aç",
+        "ru": "Открыть быстрые действия Shyncord",
+        "es": "Abre las acciones rápidas de Shyncord",
+        "fr": "Ouvrir les actions rapides d'Shyncord"
+    },
+    "Adds a button beside the message box with Shyncord quick actions: reload, turn off plugins, debug info and safe mode": {
+        "tr": "Mesaj kutusunun yanına Shyncord hızlı işlemlerini içeren bir düğme ekler: yeniden yükle, eklenti kapat, hata ayıklama bilgisi ve güvenli mod",
+        "ru": "Добавляет кнопку рядом с полем ввода с быстрыми действиями Shyncord: перезагрузка, отключение плагинов, отладочная информация и безопасный режим",
+        "es": "Añade un botón junto al cuadro de mensaje con acciones rápidas de Shyncord: recargar, desactivar plugins, información de depuración y modo seguro",
+        "fr": "Ajoute un bouton à côté de la zone de message avec les actions rapides d'Shyncord : recharger, désactiver des plugins, infos de débogage et mode sans échec"
+    },
+    "This file isn't a theme Shyncord can use.": {
+        "tr": "Bu dosya Shyncord'un kullanabileceği bir tema değil.",
+        "ru": "Этот файл не является темой, которую может использовать Shyncord.",
+        "es": "Este archivo no es un tema que Shyncord pueda usar.",
+        "fr": "Ce fichier n'est pas un thème utilisable par Shyncord."
+    },
+    "This backup is from a newer Shyncord. Update Shyncord, then try again.": {
+        "tr": "Bu yedek daha yeni bir Shyncord'dan. Shyncord'u güncelleyip tekrar dene.",
+        "ru": "Эта резервная копия из более новой версии Shyncord. Обнови Shyncord и попробуй снова.",
+        "es": "Esta copia de seguridad es de un Shyncord más reciente. Actualiza Shyncord y vuelve a intentarlo.",
+        "fr": "Cette sauvegarde vient d'un Shyncord plus récent. Mets Shyncord à jour, puis réessaie."
+    },
+    "Not seen online since Shyncord started watching": {
+        "tr": "Shyncord izlemeye başladığından beri çevrimiçi görülmedi",
+        "ru": "Не появлялся в сети с тех пор, как Shyncord начал следить",
+        "es": "No se ha visto conectado desde que Shyncord empezó a vigilar",
+        "fr": "Pas vu en ligne depuis qu'Shyncord surveille"
+    },
+    "This needs a newer Shyncord. Install the latest Shyncord IPA.": {
+        "tr": "Bunun için daha yeni bir Shyncord gerekiyor. En son Shyncord IPA'sını kur.",
+        "ru": "Для этого нужна более новая версия Shyncord. Установите последний IPA Shyncord.",
+        "es": "Esto necesita un Shyncord más reciente. Instala el IPA de Shyncord más reciente.",
+        "fr": "Cela nécessite une version plus récente d'Shyncord. Installez le dernier IPA d'Shyncord."
+    },
+    "This needs a newer Shyncord. Install it again with Shyncord Installer.": {
+        "tr": "Bunun için daha yeni bir Shyncord gerekiyor. Shyncord Installer ile yeniden kur.",
+        "ru": "Для этого нужен более новый Shyncord. Установите его заново через Shyncord Installer.",
+        "es": "Esto necesita un Shyncord más reciente. Vuelve a instalarlo con Shyncord Installer.",
+        "fr": "Cela nécessite un Shyncord plus récent. Réinstallez-le avec Shyncord Installer."
+    },
+    "Shows how long Shyncord and each of its plugins took to start, in the plugin's settings": {
+        "tr": "Shyncord'un ve her eklentisinin açılmasının ne kadar sürdüğünü eklentinin ayarlarında gösterir",
+        "ru": "Показывает в настройках плагина, сколько запускались Shyncord и каждый из его плагинов",
+        "es": "Muestra cuánto tardaron en iniciarse Shyncord y cada uno de sus plugins, en los ajustes del plugin",
+        "fr": "Affiche le temps de démarrage d'Shyncord et de chacun de ses plugins, dans les paramètres du plugin"
+    },
+    "Themes from the community's theme marketplace and Catppuccin. Installed themes also appear in Shyncord's Themes page.": {
+        "tr": "Topluluğun tema pazarından ve Catppuccin'den temalar. Yüklenen temalar Shyncord'un Temalar sayfasında da görünür.",
+        "ru": "Темы из магазина тем сообщества и Catppuccin. Установленные темы также появляются на странице «Темы» Shyncord.",
+        "es": "Temas del mercado de temas de la comunidad y de Catppuccin. Los temas instalados también aparecen en la página Temas de Shyncord.",
+        "fr": "Des thèmes du marché de thèmes de la communauté et de Catppuccin. Les thèmes installés apparaissent aussi dans la page Thèmes d'Shyncord."
+    },
+    "Type /hideshyncord in any chat to show Shyncord's settings again": {
+        "tr": "Shyncord ayarlarını yeniden göstermek için herhangi bir sohbette /hideendcord yaz",
+        "ru": "Введите /hideendcord в любом чате, чтобы снова показать настройки Shyncord",
+        "es": "Escribe /hideendcord en cualquier chat para volver a mostrar los ajustes de Shyncord",
+        "fr": "Tapez /hideendcord dans n'importe quelle discussion pour réafficher les paramètres d'Shyncord"
     }
 }

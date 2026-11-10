@@ -16,7 +16,7 @@ many are on, with filters by status and tag, like the desktop project's plugin m
 | --- | --- | --- | --- |
 | 1 | CustomProfile | Your own avatar, banner, display name, bio and pronouns, only visible to you | No badges or fake Nitro, which would only be good for fake screenshots; for now the display name changes in messages only |
 | 2 | MessageLogger | Deleted messages stay in the chat in red with a "deleted" tag, and earlier versions of edited ones show above them; ghost ping alerts; ignored users, channels and servers | The log is cleared when the app closes (the default on PC too) |
-| 3 | HideEndcord | Hides Shyncord's section of Discord's settings; `/hideendcord` brings it back | A command and a settings button instead of PC's F8 shortcut |
+| 3 | HideShyncord | Hides Shyncord's section of Discord's settings; `/hideshyncord` brings it back | A command and a settings button instead of PC's F8 shortcut |
 | 4 | FakeNitro | Emojis and stickers you can't use are sent as links; asks first if you don't have the permission | No stream quality part on mobile |
 | 5 | SmoothType | Caret and selection colors for text boxes | Android's native text box can't animate its caret, so only the colors |
 | 6 | ViewIcons | Tap avatars, banners and server icons to see them full size; long-press to copy a server avatar or the link | No context menu entries |
@@ -399,7 +399,7 @@ Pinning or hiding DMs and servers, recent channels, counters, themes, StreamProo
 | --- | --- |
 | BetterInvites | See where an invite leads, who made it and when it expires, before joining, with /inviteinfo |
 | ConsoleJanitor | Turns off Discord's console logging, which saves work on slower phones |
-| EndcordToolbox | Adds a button beside the message box with Shyncord quick actions: reload, turn off plugins, debug info and safe mode |
+| ShyncordToolbox | Adds a button beside the message box with Shyncord quick actions: reload, turn off plugins, debug info and safe mode |
 | FakeConnections | Add fake connections to your own profile, visible only to you. |
 | HideServers | Hide servers from your server list with /hideserver, and bring them back from the plugin's settings |
 | IconViewer | Browse and search all of Discord's icons in the plugin's settings, and copy their names |

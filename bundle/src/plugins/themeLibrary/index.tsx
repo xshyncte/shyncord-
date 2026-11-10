@@ -234,7 +234,7 @@ function Library() {
 
     return <Stack spacing={12}>
         <Text variant="text-sm/medium" color="text-muted">
-            {t("Themes from the community's theme marketplace and Catppuccin. Installed themes also appear in Endcord's Themes page.")}
+            {t("Themes from the community's theme marketplace and Catppuccin. Installed themes also appear in Shyncord's Themes page.")}
         </Text>
         <Search placeholder={t("Search for a theme...")} onChangeText={setQuery} />
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: GAP }} onLayout={e => setWidth(e.nativeEvent.layout.width)}>

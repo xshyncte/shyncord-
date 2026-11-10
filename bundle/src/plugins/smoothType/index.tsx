@@ -99,8 +99,8 @@ const plugin = definePlugin({
                 logger.error("The loader can't draw the caret", syncError, e);
                 // The iOS tweak draws it since 1.0.1; reinstalling is the Android installer's
                 throw new Error(Platform.OS === "ios"
-                    ? t("This needs a newer Endcord. Install the latest Endcord IPA.")
-                    : t("This needs a newer Endcord. Install it again with Endcord Installer."));
+                    ? t("This needs a newer Shyncord. Install the latest Shyncord IPA.")
+                    : t("This needs a newer Shyncord. Install it again with Shyncord Installer."));
             }
         }
         cleanup(

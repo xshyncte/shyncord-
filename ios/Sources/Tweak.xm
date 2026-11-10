@@ -20,7 +20,7 @@
 
 using namespace facebook;
 
-#define LOADER_NAME @"EndcordTweak"
+#define LOADER_NAME @"ShyncordTweak"
 // The published bundle; endcord.v<version>.hbc next to it is the same bundle precompiled for that Hermes bytecode
 // version. A test build sets its own (ENDCORD_BUNDLE_URL in the Makefile).
 #ifdef ENDCORD_BUNDLE_URL
@@ -530,9 +530,9 @@ static void loadEndcord(jsi::Runtime &runtime)
 
     if (!bundle)
     {
-        showErrorAlert(@"Endcord couldn't load",
-                       releaseRefused ? @"The download didn't pass Endcord's security check, so it wasn't run."
-                                      : @"Endcord couldn't be downloaded. Check your connection and open Discord again.",
+        showErrorAlert(@"Shyncord couldn't load",
+                       releaseRefused ? @"The download didn't pass Shyncord's security check, so it wasn't run."
+                                      : @"Shyncord couldn't be downloaded. Check your connection and open Discord again.",
                        nil);
         return;
     }
@@ -540,7 +540,7 @@ static void loadEndcord(jsi::Runtime &runtime)
     NSString *error = [JSI evaluate:bundle tag:@"endcord:bundle" runtime:runtime];
     if (error)
     {
-        showErrorAlert(@"Endcord couldn't start",
+        showErrorAlert(@"Shyncord couldn't start",
                        [NSString stringWithFormat:@"%@\n\nShake your device for the recovery menu.",
                                                   [error componentsSeparatedByString:@"\n"].firstObject],
                        nil);
@@ -612,8 +612,8 @@ static void loadEndcord(jsi::Runtime &runtime)
         if (!isRNNewArchEnabled() || !host || !class_getInstanceMethod(host, @selector(instance:didInitializeRuntime:)))
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                showErrorAlert(@"Discord is too old for Endcord",
-                              @"Endcord needs Discord 332 or newer.",
+                showErrorAlert(@"Discord is too old for Shyncord",
+                              @"Shyncord needs Discord 332 or newer.",
                               nil);
             });
             return;
