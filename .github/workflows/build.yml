@@ -135,6 +135,7 @@ jobs:
     # The installer offers Endcord Classic, on Aliucord's older Discord, through its own installer, which lives on the
     # main branch and is published next to this one
     name: Endcord Classic Installer
+    if: github.repository == 'Endcord/endcord-mobile'
     runs-on: ubuntu-latest
     # Signed with the installer key, like main's own Endcord Classic installer releases, so either can update the other
     env:
@@ -175,7 +176,14 @@ jobs:
     name: Publish to the builds-next branch
     needs: [bundle, loader, installer, classic-installer]
     # Also when run by hand on next, to rebuild it without a new commit (after the signing secrets change, say)
-    if: github.ref == 'refs/heads/next' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    if: >-
+      always() &&
+      github.ref == 'refs/heads/next' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+      needs.bundle.result == 'success' &&
+      needs.loader.result == 'success' &&
+      needs.installer.result == 'success' &&
+      (github.repository != 'Endcord/endcord-mobile' || needs['classic-installer'].result == 'success')
     runs-on: ubuntu-latest
     # The signing key is this environment's secret: give it required reviewers in the repository settings and every
     # publish waits for one, so a push to next alone can't sign a build
@@ -199,6 +207,7 @@ jobs:
           name: installer
           path: ${{ runner.temp }}/installer
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        if: needs['classic-installer'].result == 'success'
         with:
           name: classic-installer
           path: ${{ runner.temp }}/classic-installer
@@ -206,16 +215,22 @@ jobs:
         # Debug-signed until the INSTALLER_KEYSTORE secrets exist; releases come from the Release Installer workflow
         run: |
           cp "$RUNNER_TEMP"/installer/*.apk "$RUNNER_TEMP"/out/endcord-installer.apk
-          cp "$RUNNER_TEMP"/classic-installer/*.apk "$RUNNER_TEMP"/out/endcord-classic-installer.apk
+          if [ -d "$RUNNER_TEMP/classic-installer" ]; then
+            cp "$RUNNER_TEMP"/classic-installer/*.apk "$RUNNER_TEMP"/out/endcord-classic-installer.apk
+          fi
       - name: Write build info
         run: |
+          classic_installer=null
+          if [ -f "$RUNNER_TEMP/out/endcord-classic-installer.apk" ]; then
+            classic_installer='"endcord-classic-installer.apk"'
+          fi
           cat > "$RUNNER_TEMP"/out/data.json <<EOF
           {
             "bundle": "endcord.min.js",
             "bytecode": [$(cd "$RUNNER_TEMP"/out && ls endcord.v*.hbc | sed "s/.*/\"&\"/" | paste -sd, -)],
             "loader": "endcord-xposed.apk",
             "installer": "endcord-installer.apk",
-            "classicInstaller": "endcord-classic-installer.apk",
+            "classicInstaller": $classic_installer,
             "loaderVersion": "$(sed -nE 's/^\s*versionName = "(.*)"/\1/p' android/loader/app/build.gradle.kts)",
             "loaderVersionCode": $(sed -nE 's/^\s*versionCode = ([0-9]+)/\1/p' android/loader/app/build.gradle.kts),
             "commit": "${{ github.sha }}",
