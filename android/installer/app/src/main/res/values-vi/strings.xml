@@ -1,0 +1,45 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name" translatable="false">Shyncord Installer</string>
+    <string name="label_instagram">Instagram</string>
+    <string name="msg_cleared_cache">Đã xóa bộ nhớ đệm</string>
+    <string name="msg_invalid_version">Phiên bản Discord không hợp lệ</string>
+    <string name="msg_loading">Đang tải…</string>
+    <string name="msg_download_cancelled">Đã hủy tải xuống</string>
+    <string name="msg_download_failed">Tải xuống thất bại</string>
+    <string name="msg_unsigned_module">Đang dùng tệp mô-đun của bạn: tệp này không được xác minh với bản phát hành Shyncord có chữ ký</string>
+    <string name="group_download">Đang tải APK</string>
+    <string name="group_patch">Đang vá</string>
+    <string name="group_installing">Đang cài đặt</string>
+    <string name="step_dl_base">Đang tải APK Discord</string>
+    <string name="step_dl_mod">Đang tải Shyncord</string>
+    <string name="step_add_mod">Đang thêm Shyncord</string>
+    <string name="step_signing">Đang ký APK</string>
+    <string name="step_installing">Đang cài APK</string>
+    <string name="installer_success">Cài đặt thành công</string>
+    <string name="installer_aborted">Đã hủy cài đặt</string>
+    <string name="action_back">Quay lại</string>
+    <string name="action_install">Cài đặt</string>
+    <string name="action_update">Cập nhật</string>
+    <string name="action_retry">Thử lại</string>
+    <string name="action_open_settings">Mở cài đặt</string>
+    <string name="action_tap_to_install">Nhấn để cài Shyncord cho Discord %1$s</string>
+    <string name="title_installer">Trình cài đặt</string>
+    <string name="title_home">Trang chủ</string>
+    <string name="title_settings">Cài đặt</string>
+    <string name="title_update">Có bản cập nhật</string>
+    <string name="title_about">Giới thiệu</string>
+    <string name="settings_appearance">Giao diện</string>
+    <string name="settings_theme">Chủ đề</string>
+    <string name="settings_check_updates">Kiểm tra cập nhật Discord</string>
+    <string name="settings_customization">Tùy chỉnh</string>
+    <string name="settings_customization_description">Tùy chỉnh bản cài đặt Shyncord</string>
+    <string name="settings_app_name">Tên ứng dụng</string>
+    <string name="settings_app_icon">Thay biểu tượng ứng dụng</string>
+    <string name="settings_app_icon_description">Dùng biểu tượng Shyncord thay cho biểu tượng Discord</string>
+    <string name="settings_advanced">Nâng cao</string>
+    <string name="settings_channel">Kênh phát hành</string>
+    <string name="settings_mirror">Máy chủ tải xuống</string>
+    <string name="edition_title">Chọn Shyncord</string>
+    <string name="edition_endcord">Shyncord</string>
+    <string name="edition_endcord_desc">Trên ứng dụng Discord hiện tại, với hơn 300 plugin Shyncord</string>
+</resources>
