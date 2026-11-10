@@ -4,7 +4,7 @@
 # which downloads its bundle from server.py. One launch per scenario, each prepared here (the app's files, what the
 # server serves); Host.mm checks what happened and run.sh what the launches left behind.
 #
-#   run.sh <Endcord.dylib built for the simulator> <bytecode version: 98 or 99> <results folder>
+#   run.sh <Shyncord.dylib built for the simulator> <bytecode version: 98 or 99> <results folder>
 #
 # The tweak has to be built with ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js.
 set -uo pipefail
@@ -85,7 +85,7 @@ cat > "$APP/Info.plist" <<EOF
 EOF
 cp "$WORK/main.jsbundle" "$APP/"
 cp -R "$FRAMEWORK" "$APP/Frameworks/"
-cp "$DYLIB" "$APP/Frameworks/Endcord.dylib"
+cp "$DYLIB" "$APP/Frameworks/Shyncord.dylib"
 # In an app group, as a sideloaded Discord signed with one is: the simulator reads the entitlements linked into the app
 cat > "$WORK/host.entitlements" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -161,7 +161,7 @@ launch() {
     grep "^RESULT" "$out" | sed 's/^RESULT //'
     grep "^RESULT" "$out" | sed 's/^RESULT //' >> "$RESULTS/results.txt"
     grep -q "^DONE" "$out" || echo "FAIL $name finished: no DONE (it crashed or hung); see $name.err" | tee -a "$RESULTS/results.txt"
-    grep -E "\[Endcord" "$err" | tail -n 40
+    grep -E "\[Shyncord" "$err" | tail -n 40
     echo "::endgroup::"
 }
 

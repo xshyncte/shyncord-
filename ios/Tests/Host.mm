@@ -851,7 +851,7 @@ int main(int argc, char *argv[])
             if ([arg hasPrefix:@"--scenario="]) scenario = [arg substringFromIndex:11];
         }
         // As if Discord had been injected with it: before the app starts
-        NSString *tweak = [NSBundle.mainBundle.privateFrameworksPath stringByAppendingPathComponent:@"Endcord.dylib"];
+        NSString *tweak = [NSBundle.mainBundle.privateFrameworksPath stringByAppendingPathComponent:@"Shyncord.dylib"];
         if (!dlopen(tweak.fileSystemRepresentation, RTLD_NOW))
         {
             printf("RESULT FAIL %s load-tweak: %s\nDONE %s failures=1\n", scenario.UTF8String, dlerror(),

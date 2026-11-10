@@ -11,7 +11,7 @@ Based on [RainTweak](![alt text](image.png)) (OSL-3.0); see `../UPSTREAM.md`.
 The iOS workflow (`.github/workflows/ios.yml`) builds it on macOS with [Theos](https://theos.dev):
 
 - `com.endcord.tweak_<version>_iphoneos-arm64.deb` for jailbroken devices (rootless)
-- `Endcord.dylib` to inject into a Discord IPA with Feather, ESign, KSign or Sideloadly
+- `Shyncord.dylib` to inject into a Discord IPA with Feather, ESign, KSign or Sideloadly
 - `Shyncord.ipa`, Discord with the tweak injected, from the decrypted Discord IPA linked in the `DISCORD_IPA_URL`
   secret, or else RainTweak's public IPA, pinned by hash, with RainTweak taken out of it (`scripts/remove-dylib.cjs`)
 

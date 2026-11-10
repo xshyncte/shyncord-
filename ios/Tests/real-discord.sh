@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Runs the real iOS Discord on the simulator with the tweak and a --test bundle, so the bundle's self-test checks
-# Endcord against Discord itself, logged out, as the Android emulator job does. A decrypted device build runs on an
+# Shyncord against Discord itself, logged out, as the Android emulator job does. A decrypted device build runs on an
 # Apple silicon simulator once each binary says it's for the simulator. Nothing here is published.
 #
-#   real-discord.sh <decrypted Discord IPA> <Endcord.dylib built for the simulator> <bundle folder> <results folder>
+#   real-discord.sh <decrypted Discord IPA> <Shyncord.dylib built for the simulator> <bundle folder> <results folder>
 #
 # The tweak has to be built with ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js; the bundle folder holds
 # endcord.min.js and endcord.v<bytecode>.hbc.
@@ -66,7 +66,7 @@ for _ in $(seq 1 30); do curl -fs "http://127.0.0.1:$PORT/__mode/normal" > /dev/
 SIMCTL_CHILD_ENDCORD_TEST_REQUIRE_SIGNED=1 SIMCTL_CHILD_ENDCORD_LOG_JS=1 SIMCTL_CHILD_OS_ACTIVITY_DT_MODE=1 xcrun simctl launch \
     --stdout="$RESULTS/discord.out" --stderr="$RESULTS/discord.err" "$UDID" "$APP_ID" 2>&1 | tee "$RESULTS/launch.log"
 
-# The self-test asks for a screenshot of each Endcord page it opens
+# The self-test asks for a screenshot of each Shyncord page it opens
 taken=" "
 for i in $(seq 1 900); do
     sleep 1
@@ -112,9 +112,9 @@ for line in open(sys.argv[1], errors="replace"):
 print(f"Plugins: {started} started, {stopped} stopped, {len(failed)} failed, self-test {'finished' if done else 'did NOT finish'}")
 print("\n".join(failed))
 EOF
-[ -s "$RESULTS/selftest.jsonl" ] && pass "Endcord ran inside the real Discord" || fail "no self-test output"
+[ -s "$RESULTS/selftest.jsonl" ] && pass "Shyncord ran inside the real Discord" || fail "no self-test output"
 
-# A second start: the saved bundle, checked with its ETag, and a theme, on Endcord's pages and in Discord's native colors
+# A second start: the saved bundle, checked with its ETag, and a theme, on Shyncord's pages and in Discord's native colors
 xcrun simctl terminate "$UDID" "$APP_ID" 2> /dev/null
 DOCS="$(xcrun simctl get_app_container "$UDID" "$APP_ID" data)/Documents"
 mkdir -p "$DOCS/pyoncord"
@@ -134,7 +134,7 @@ done
 grep -q 'The saved bundle is the latest release' "$RESULTS/discord2.err" \
     && pass "the second start ran the saved bundle after checking it against the signed release" \
     || fail "the second start didn't check the saved bundle against the signed release"
-grep -E '\[Endcord\]' "$RESULTS/discord2.err" | tail -n 30 > "$RESULTS/second-start.txt"
+grep -E '\[Shyncord\]' "$RESULTS/discord2.err" | tail -n 30 > "$RESULTS/second-start.txt"
 
 # Discord's own screen share socket classes over the tweak's link, as there's no extension to run here
 xcrun simctl terminate "$UDID" "$APP_ID" 2> /dev/null

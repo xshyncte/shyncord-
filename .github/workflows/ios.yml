@@ -52,9 +52,9 @@ jobs:
           # Strict once releases are signed: until the key is there, a strict tweak would refuse every bundle
           make package ENDCORD_REQUIRE_SIGNED=${{ secrets.ENDCORD_RELEASE_KEY != '' && '1' || '' }} 2>&1 | tee out/build.log
           cp packages/*.deb out/
-          cp "$(find .theos/_ -name Endcord.dylib | head -n 1)" out/Endcord.dylib
+          cp "$(find .theos/_ -name Shyncord.dylib | head -n 1)" out/Shyncord.dylib
           # This message is compiled out unless the tweak refuses unsigned bundles
-          if [ "${{ secrets.ENDCORD_RELEASE_KEY != '' }}" = true ] && ! grep -aq 'No signed release' out/Endcord.dylib; then
+          if [ "${{ secrets.ENDCORD_RELEASE_KEY != '' }}" = true ] && ! grep -aq 'No signed release' out/Shyncord.dylib; then
             echo "::error::The signing key is set, but this tweak isn't strict"
             exit 1
           fi
@@ -87,14 +87,14 @@ jobs:
           mkdir -p ../results
           export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
           # Signed ad hoc: the simulator needs a signature, not a developer's
-          make TARGET=simulator:clang:latest:15.0 ARCHS=arm64 Endcord_USE_SUBSTRATE=0 TARGET_CODESIGN_FLAGS="-f -s -" \
+          make TARGET=simulator:clang:latest:15.0 ARCHS=arm64 Shyncord_USE_SUBSTRATE=0 TARGET_CODESIGN_FLAGS="-f -s -" \
             ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js ENDCORD_RELEASE_KEY="$(cat Tests/release-test-key.pub)" \
             2>&1 | tee ../results/tweak-build.log
           find .theos/obj -name "*.dylib"
-          cp "$(find .theos/obj -name Endcord.dylib | head -n 1)" ../Endcord-simulator.dylib
+          cp "$(find .theos/obj -name Shyncord.dylib | head -n 1)" ../Shyncord-simulator.dylib
       - name: Test
         shell: bash
-        run: bash ios/Tests/run.sh Endcord-simulator.dylib ${{ matrix.bytecode }} results
+        run: bash ios/Tests/run.sh Shyncord-simulator.dylib ${{ matrix.bytecode }} results
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: always()
         with:
@@ -165,7 +165,7 @@ jobs:
           node ios/scripts/cgbi-to-png.cjs "$RUNNER_TEMP/discord-icon.png" "$RUNNER_TEMP/icon.png"
 
           # -u: any device, -w: no watch app, -s: fakesigned for TrollStore, -g: without encrypted extensions, -q: arm64 only,
-          # -d: Endcord's files in the Files app, which the recovery menu's Open App Folder opens
+          # -d: Shyncord's files in the Files app, which the recovery menu's Open App Folder opens
           cyan -i "$RUNNER_TEMP/discord.ipa" -o Shyncord.ipa -f "$RUNNER_TEMP"/tweak/*.deb \
             -n Shyncord -k "$RUNNER_TEMP/icon.png" -uwsgqd
           ls -l Shyncord.ipa
@@ -178,11 +178,11 @@ jobs:
           sips -z 180 180 "$RUNNER_TEMP/icon.png" --out "$app/$icon@3x.png"
 
           # The screen share extension loads the tweak too, for the app group it shares with the app (Sideloading.x),
-          # and is listed as Endcord beside the App Store Discord's. cyan injects the main app only.
+          # and is listed as Shyncord beside the App Store Discord's. cyan injects the main app only.
           extension="$app/PlugIns/BroadcastUpload.appex"
           if [ -f "$extension/BroadcastUpload" ]; then
             tools=$(python -c 'from cyan import tbhutils; print(tbhutils.get_tools_dir()[1])')
-            node ios/scripts/insert-dylib.cjs "$extension/BroadcastUpload" "$extension/BroadcastUpload" "@rpath/Endcord.dylib"
+            node ios/scripts/insert-dylib.cjs "$extension/BroadcastUpload" "$extension/BroadcastUpload" "@rpath/Shyncord.dylib"
             plutil -replace CFBundleDisplayName -string Shyncord "$extension/Info.plist"
             # cyan's -s, again for this binary, for TrollStore; other installers sign it themselves
             "$tools/ldid" -S -M "$extension/BroadcastUpload" || echo "::warning::The extension isn't fakesigned"
@@ -197,8 +197,8 @@ jobs:
             echo "::error::The IPA still has RainTweak in it"
             exit 1
           fi
-          if ! otool -L "$app/Discord" | grep -q Endcord.dylib; then
-            echo "::error::Discord doesn't load Endcord"
+          if ! otool -L "$app/Discord" | grep -q Shyncord.dylib; then
+            echo "::error::Discord doesn't load Shyncord"
             exit 1
           fi
 
@@ -209,7 +209,7 @@ jobs:
               case "$(file -b "$binary")" in *Mach-O*) nm -gU "$binary" 2>/dev/null | awk '{ print $NF }' || true ;; esac
             fi
           done | sort -u > "$RUNNER_TEMP/exported.txt"
-          nm -u "$RUNNER_TEMP/tweak/Endcord.dylib" | { grep 'facebook3jsi' || true; } | sort -u > "$RUNNER_TEMP/needed.txt"
+          nm -u "$RUNNER_TEMP/tweak/Shyncord.dylib" | { grep 'facebook3jsi' || true; } | sort -u > "$RUNNER_TEMP/needed.txt"
           missing=$(comm -23 "$RUNNER_TEMP/needed.txt" "$RUNNER_TEMP/exported.txt")
           if [ -n "$missing" ]; then
             echo "::error::Discord $version doesn't export JSI the tweak uses:"
@@ -217,7 +217,7 @@ jobs:
             exit 1
           fi
           echo "All $(wc -l < "$RUNNER_TEMP/needed.txt") JSI symbols the tweak uses are exported by Discord $version"
-          # The tweak loads Endcord from RCTHost's instance:didInitializeRuntime:, which bridgeless Discord calls
+          # The tweak loads Shyncord from RCTHost's instance:didInitializeRuntime:, which bridgeless Discord calls
           if ! grep -rqa "instance:didInitializeRuntime:" "$app"; then
             echo "::error::Discord $version has no instance:didInitializeRuntime: for the tweak to hook"
             exit 1
@@ -358,22 +358,22 @@ jobs:
           tag="ios-v$TWEAK_VERSION"
           cd "$RUNNER_TEMP/out"
           ls -l
-          files=(Endcord.dylib *.deb)
+          files=(Shyncord.dylib *.deb)
           if [ -n "$DISCORD_VERSION" ]; then
             files=(Shyncord.ipa "${files[@]}")
-            title="Endcord for iOS $TWEAK_VERSION (Discord $DISCORD_VERSION)"
-            notes="Endcord $TWEAK_VERSION in Discord $DISCORD_VERSION, built from ${{ github.sha }}.
+            title="Shyncord for iOS $TWEAK_VERSION (Discord $DISCORD_VERSION)"
+            notes="Shyncord $TWEAK_VERSION in Discord $DISCORD_VERSION, built from ${{ github.sha }}.
 
           - **Shyncord.ipa**: install it with AltStore, SideStore, Feather, ESign, KSign, Sideloadly or TrollStore
-          - **Endcord.dylib**: to inject into your own decrypted Discord IPA (332 or newer)
+          - **Shyncord.dylib**: to inject into your own decrypted Discord IPA (332 or newer)
           - **.deb**: for jailbroken devices (rootless)
 
           AltStore and SideStore source: https://raw.githubusercontent.com/${{ github.repository }}/builds-ios/apps.json"
           else
-            title="Endcord for iOS $TWEAK_VERSION"
-            notes="Endcord $TWEAK_VERSION, built from ${{ github.sha }}.
+            title="Shyncord for iOS $TWEAK_VERSION"
+            notes="Shyncord $TWEAK_VERSION, built from ${{ github.sha }}.
 
-          - **Endcord.dylib**: to inject into your own decrypted Discord IPA (332 or newer) with Feather, ESign, KSign or Sideloadly
+          - **Shyncord.dylib**: to inject into your own decrypted Discord IPA (332 or newer) with Feather, ESign, KSign or Sideloadly
           - **.deb**: for jailbroken devices (rootless)"
           fi
           if gh release view "$tag" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
@@ -387,7 +387,7 @@ jobs:
           echo "TAG=$tag" >> "$GITHUB_ENV"
       - name: Update the AltStore source
         if: needs.ipa.outputs.discord-version != ''
-        # builds-ios holds only apps.json, which AltStore and SideStore add as a source and update Endcord from. Its one
+        # builds-ios holds only apps.json, which AltStore and SideStore add as a source and update Shyncord from. Its one
         # version is the release's current IPA, which every rebuild replaces at the same URL.
         run: |
           mkdir source
@@ -399,17 +399,17 @@ jobs:
           const app = JSON.parse(fs.readFileSync(`${RUNNER_TEMP}/out/app.json`, "utf8"));
           const icon = `https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/next/bundle/src/assets/icons/endcord.png`;
           const source = {
-            name: "Endcord",
+            name: "Shyncord",
             identifier: "com.endcord.source",
             subtitle: "Plugins, themes and privacy for Discord",
             iconURL: icon,
             website: "https://endcord.com",
             apps: [{
-              name: "Endcord",
+              name: "Shyncord",
               bundleIdentifier: "com.hammerandchisel.discord",
-              developerName: "Endcord",
+              developerName: "Shyncord",
               subtitle: "Plugins, themes and privacy for Discord",
-              localizedDescription: "Discord with Endcord: 300+ plugins, themes and five languages.",
+              localizedDescription: "Discord with Shyncord: 300+ plugins, themes and six languages.",
               iconURL: icon,
               tintColor: "#7AB8F5",
               category: "social",
@@ -431,5 +431,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add apps.json
-          git commit -qm "Endcord $TWEAK_VERSION in Discord $DISCORD_VERSION"
+          git commit -qm "Shyncord $TWEAK_VERSION in Discord $DISCORD_VERSION"
           git push -qf "https://x-access-token:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git" builds-ios

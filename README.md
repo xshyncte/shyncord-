@@ -101,7 +101,7 @@ any time, and everything signed with one then stops opening until it's signed wi
 <br>
 
 The [iOS release](https://github.com/Endcord/endcord-mobile/releases/tag/ios-v1.0.7) also has a rootless `.deb` and
-`Endcord.dylib`, to inject into your own decrypted Discord IPA (Discord 332 or newer) with Substrate or ElleKit included.
+`Shyncord.dylib`, to inject into your own decrypted Discord IPA (Discord 332 or newer) with Substrate or ElleKit included.
 
 </details>
 
