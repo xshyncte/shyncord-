@@ -26,7 +26,7 @@ using namespace facebook;
 #ifdef ENDCORD_BUNDLE_URL
 #define BUNDLE_URL ENDCORD_BUNDLE_URL
 #else
-#define BUNDLE_URL @"https://raw.githubusercontent.com/Endcord/endcord-mobile/builds-next/endcord.min.js"
+#define BUNDLE_URL @"https://raw.githubusercontent.com/xshyncte/shyncord-actions/builds-next/endcord.min.js"
 #endif
 
 static LoaderConfig  *loaderConfig;
