@@ -61,9 +61,9 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew --no-daemon :app:assembleRelease
-          cp app/build/outputs/apk/release/*.apk "$RUNNER_TEMP/endcord-installer-v$VERSION.apk"
+          cp app/build/outputs/apk/release/*.apk "$RUNNER_TEMP/shyncord-installer-v$VERSION.apk"
       - uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
         with:
           tag_name: next-installer-v${{ env.VERSION }}
-          name: Endcord Installer (new Discord) ${{ env.VERSION }}
-          files: ${{ runner.temp }}/endcord-installer-v${{ env.VERSION }}.apk
+          name: Shyncord Installer (new Discord) ${{ env.VERSION }}
+          files: ${{ runner.temp }}/shyncord-installer-v${{ env.VERSION }}.apk

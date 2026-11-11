@@ -81,21 +81,24 @@ jobs:
             echo "$LOADER_KEYSTORE" | base64 -d > "$RUNNER_TEMP/loader.jks"
             export KEYSTORE_FILE="$RUNNER_TEMP/loader.jks"
             ./gradlew --no-daemon :app:assembleRelease -Pendcord.requireSigned=$REQUIRE_SIGNED
-            cp app/build/outputs/apk/release/app-release.apk endcord-xposed.apk
+            cp app/build/outputs/apk/release/app-release.apk shyncord-xposed.apk
             # This message is compiled out unless the loader refuses unsigned bundles
-            if [ "$REQUIRE_SIGNED" = true ] && ! unzip -p endcord-xposed.apk 'classes*.dex' | grep -aq 'No signed release'; then
+            if [ "$REQUIRE_SIGNED" = true ] && ! unzip -p shyncord-xposed.apk 'classes*.dex' | grep -aq 'No signed release'; then
               echo "::error::The signing key is set, but this loader isn't strict"
               exit 1
             fi
           else
             echo "::warning::No LOADER_KEYSTORE secret: publishing the debug-signed module instead"
             ./gradlew --no-daemon :app:assembleDebug -Pendcord.requireSigned=$REQUIRE_SIGNED
-            cp app/build/outputs/apk/debug/app-debug.apk endcord-xposed.apk
+            cp app/build/outputs/apk/debug/app-debug.apk shyncord-xposed.apk
           fi
+          cp shyncord-xposed.apk endcord-xposed.apk
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: loader
-          path: android/loader/endcord-xposed.apk
+          path: |
+            android/loader/shyncord-xposed.apk
+            android/loader/endcord-xposed.apk
 
   installer:
     name: Installer
@@ -214,7 +217,8 @@ jobs:
       - name: Add the installers
         # Debug-signed until the INSTALLER_KEYSTORE secrets exist; releases come from the Release Installer workflow
         run: |
-          cp "$RUNNER_TEMP"/installer/*.apk "$RUNNER_TEMP"/out/endcord-installer.apk
+          cp "$RUNNER_TEMP"/installer/*.apk "$RUNNER_TEMP"/out/shyncord-installer.apk
+          cp "$RUNNER_TEMP"/out/shyncord-installer.apk "$RUNNER_TEMP"/out/endcord-installer.apk
           if [ -d "$RUNNER_TEMP/classic-installer" ]; then
             cp "$RUNNER_TEMP"/classic-installer/*.apk "$RUNNER_TEMP"/out/endcord-classic-installer.apk
           fi
@@ -228,8 +232,8 @@ jobs:
           {
             "bundle": "endcord.min.js",
             "bytecode": [$(cd "$RUNNER_TEMP"/out && ls endcord.v*.hbc | sed "s/.*/\"&\"/" | paste -sd, -)],
-            "loader": "endcord-xposed.apk",
-            "installer": "endcord-installer.apk",
+            "loader": "shyncord-xposed.apk",
+            "installer": "shyncord-installer.apk",
             "classicInstaller": $classic_installer,
             "loaderVersion": "$(sed -nE 's/^\s*versionName = "(.*)"/\1/p' android/loader/app/build.gradle.kts)",
             "loaderVersionCode": $(sed -nE 's/^\s*versionCode = ([0-9]+)/\1/p' android/loader/app/build.gradle.kts),

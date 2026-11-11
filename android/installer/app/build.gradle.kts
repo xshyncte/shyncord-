@@ -26,11 +26,11 @@ android {
         buildConfigField("String", "REPO", "\"xshyncte/shyncord-\"")
         buildConfigField("String", "ORG_LINK", "\"https://instagram.com/batrummm\"")
         buildConfigField("String", "MODDED_APP_PACKAGE_NAME", "\"com.endcord.next\"")
-        // Where the Build workflow publishes the loader. Pass -Pendcord.loaderUrl=http://10.0.2.2:4040/endcord-xposed.apk
+        // Where the Build workflow publishes the loader. Pass -Pendcord.loaderUrl=http://10.0.2.2:4040/shyncord-xposed.apk
         // to install a loader you serve yourself while developing; the signed release has to be served next to it
         // (bundle/scripts/sign-release.mjs), as the emulator test does.
         val loaderUrl = providers.gradleProperty("endcord.loaderUrl")
-            .orElse("https://raw.githubusercontent.com/xshyncte/shyncord-/builds-next/endcord-xposed.apk")
+            .orElse("https://raw.githubusercontent.com/xshyncte/shyncord-/builds-next/shyncord-xposed.apk")
             .get()
         buildConfigField("String", "LOADER_URL", "\"$loaderUrl\"")
         // Endcord Classic (on Aliucord's older Discord) is installed by its own installer, which is published next to

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Runs inside the Android emulator job of .github/workflows/emulator.yml. Expects in the working directory:
-#   serve/        endcord.min.js (built with --test), its endcord.v*.hbc and endcord-xposed.apk, served on port 4040
+#   serve/        endcord.min.js (built with --test), its endcord.v*.hbc and shyncord-xposed.apk, served on port 4040
 #                 (10.0.2.2 in the emulator)
 #   installer.apk the debug installer, built to fetch the loader from serve/
 # Writes screenshots, logs and the self-test report to results/.
@@ -68,7 +68,7 @@ launch_endcord() {
     adb shell am force-stop $ENDCORD_PKG
 }
 
-step "Install Endcord Installer"
+step "Install Shyncord Installer"
 adb install -r -g installer.apk || fail "installer apk didn't install"
 adb shell appops set $INSTALLER_PKG REQUEST_INSTALL_PACKAGES allow
 adb shell appops set $INSTALLER_PKG MANAGE_EXTERNAL_STORAGE allow

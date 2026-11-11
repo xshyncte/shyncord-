@@ -1,4 +1,4 @@
-rootProject.name = "endcord-installer"
+rootProject.name = "shyncord-installer"
 
 pluginManagement {
     repositories {
