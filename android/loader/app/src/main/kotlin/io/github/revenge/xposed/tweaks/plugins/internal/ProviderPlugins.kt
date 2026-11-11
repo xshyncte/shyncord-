@@ -24,8 +24,8 @@ internal lateinit var DISCORD_VERSION: Version
 internal val apiProviderPlugin = internalPlugin(
     PluginManifest(
         id = API_DEPENDENCY_ID,
-        name = "Endcord Plugin API",
-        description = "Provides the Endcord plugin API.",
+        name = "Shyncord Plugin API",
+        description = "Provides the Shyncord plugin API.",
         author = "Revenge",
         version = API_VERSION,
     ),

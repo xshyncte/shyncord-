@@ -10,11 +10,11 @@ object RevengeConstants {
     const val BUNDLE_MANIFEST_FILE = "manifest.json"
     const val PRELOADS_DIR = "preloads"
 
-    const val LOADER_NAME = "EndcordXposed"
+    const val LOADER_NAME = "ShyncordXposed"
     val LOADER_VERSION
         get() = BuildConfig.VERSION_NAME
     val USER_AGENT
-        get() = "EndcordXposed/$LOADER_VERSION"
+        get() = "ShyncordXposed/$LOADER_VERSION"
 
     /**
      * Fallback Hermes bundle shipped inside this APK's `assets/` directory.

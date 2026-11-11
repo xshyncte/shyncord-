@@ -311,7 +311,7 @@ private fun requireReplaceable(id: String) {
     if (InternalPluginFlags.INTERNAL in factory.internalFlags && SourcesStore[id] == null)
         throw PluginSystemError(
             PluginErrorCodes.NOT_ALLOWED,
-            "Plugin $id is built into Endcord and can't be replaced",
+            "Plugin $id is built into Shyncord and can't be replaced",
         )
 }
 

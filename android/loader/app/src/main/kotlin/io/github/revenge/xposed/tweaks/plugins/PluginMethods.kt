@@ -153,7 +153,7 @@ val pluginMethods by tweak {
         if (InternalPluginFlags.INTERNAL in factory.internalFlags && SourcesStore[pluginId] == null)
             throw PluginSystemError(
                 PluginErrorCodes.NOT_ALLOWED,
-                "Plugin $pluginId is internal and updates with Endcord itself",
+                "Plugin $pluginId is internal and updates with Shyncord itself",
             )
 
         SourcesStore.setHeld(pluginId, held).toJSPayload()

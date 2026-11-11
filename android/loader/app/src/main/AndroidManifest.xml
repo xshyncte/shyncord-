@@ -13,7 +13,7 @@
                 android:value="true"/>
         <meta-data
                 android:name="xposeddescription"
-                android:value="Endcord for the current Discord Android app: loads the Endcord bundle and its plugins into Discord. Based on Revenge."/>
+                android:value="Shyncord for the current Discord Android app: loads Shyncord and its plugins into Discord. Based on Revenge."/>
         <meta-data
                 android:name="xposedminversion"
                 android:value="82"/>

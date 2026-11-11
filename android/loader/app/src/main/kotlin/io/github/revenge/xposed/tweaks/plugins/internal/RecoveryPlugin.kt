@@ -26,7 +26,7 @@ import java.io.File
 private val manifest = PluginManifest(
     id = "revenge.recovery",
     name = "Recovery",
-    description = "Handles errors and provides troubleshooting options for Endcord.",
+    description = "Handles errors and provides troubleshooting options for Shyncord.",
     author = "Revenge",
     icon = "ShieldIcon",
     version = API_VERSION,
@@ -102,7 +102,7 @@ fun PluginScope.addBridgeMethods() {
                 .setTitle(Strings["error_title"])
                 .setMessage(
                     """
-                        Endcord: $version
+                        Shyncord: $version
                         Discord: ${act.versionName()} (${act.versionCode()})
                         Device: ${Build.MANUFACTURER} ${Build.MODEL}
                         

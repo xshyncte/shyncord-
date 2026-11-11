@@ -189,7 +189,7 @@ internal fun extractPluginZip(input: InputStream, root: File, tmpName: String): 
             val manifestEntry = zip.getEntry(MANIFEST_FILE)
                 ?: throw PluginSystemError(
                     PluginErrorCodes.INSTALL_INVALID_ZIP,
-                    "Not an Endcord plugin ZIP: missing $MANIFEST_FILE",
+                    "Not a Shyncord plugin ZIP: missing $MANIFEST_FILE",
                 )
 
             val manifest = try {
