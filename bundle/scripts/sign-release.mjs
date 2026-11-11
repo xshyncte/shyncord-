@@ -18,6 +18,7 @@ const [folder] = process.argv.slice(2);
 const privateKeyInput = process.env.ENDCORD_RELEASE_KEY;
 if (!folder || !privateKeyInput) throw new Error("Usage: ENDCORD_RELEASE_KEY=<private key> node scripts/sign-release.mjs <folder>");
 
+/** @param {string} input */
 function parsePrivateKey(input) {
     const value = input.trim().replace(/\\r\\n|\\n/g, "\n");
     const attempts = [() => createPrivateKey(value)];
@@ -37,6 +38,7 @@ function parsePrivateKey(input) {
         }
     }
 
+    /** @type {unknown} */
     let lastError;
     for (const attempt of attempts) {
         try {
@@ -48,7 +50,7 @@ function parsePrivateKey(input) {
     throw new Error(
         "ENDCORD_RELEASE_KEY is not a readable private key. Set it to a PEM private key, " +
         "a PEM with escaped newlines, or base64-encoded PEM/DER (PKCS#8 or SEC1). " +
-        `OpenSSL: ${lastError.message}`,
+        `OpenSSL: ${lastError instanceof Error ? lastError.message : String(lastError)}`,
     );
 }
 
