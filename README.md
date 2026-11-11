@@ -4,7 +4,7 @@
 
 **Plugins, themes and privacy for the Discord app on your Android phone, iPhone and iPad**
 
-[![Download for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.3/endcord-installer-v1.0.3.apk)
+[![Download for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://raw.githubusercontent.com/xshyncte/shyncord-/builds-next/shyncord-installer.apk)
 [![Download for iOS](https://img.shields.io/badge/Download-iOS%20IPA-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.7/Shyncord.ipa)
 [![Instagram](https://img.shields.io/badge/Instagram-Follow%20us-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/batrummm)
 
@@ -56,7 +56,7 @@ Both run the same Shyncord bundle from [`bundle/`](bundle), so plugins and theme
 
 No root needed. Shyncord installs next to Discord as a separate app, and your Discord stays exactly as it is.
 
-1. Download **[Shyncord Installer](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.3/endcord-installer-v1.0.3.apk)**
+1. Download **[Shyncord Installer](https://raw.githubusercontent.com/xshyncte/shyncord-/builds-next/shyncord-installer.apk)**
    and open it. If Android asks, allow your browser to install apps.
 2. In **Shyncord Installer**, tap **Install**. It uses the Discord on your phone, or downloads the latest one.
 3. Open **Shyncord** and sign in. Shyncord's settings are in Discord's settings, under **Shyncord**.
@@ -72,7 +72,7 @@ it warns about every app that doesn't come from the Play Store.
 Nothing is reinstalled: the Play Store Discord runs Shyncord.
 
 1. Install [LSPosed](https://github.com/JingMatrix/LSPosed) or another Xposed framework.
-2. Download `endcord-xposed.apk` from the [`builds-next` branch](https://github.com/Endcord/endcord-mobile/tree/builds-next)
+2. Download `shyncord-xposed.apk` from the [`builds-next` branch](https://github.com/xshyncte/shyncord-/tree/builds-next)
    and install it.
 3. In LSPosed, enable the **Shyncord Xposed** module for **Discord** (`com.discord`).
 4. Force-stop Discord and open it again.
@@ -101,7 +101,7 @@ any time, and everything signed with one then stops opening until it's signed wi
 <br>
 
 The [iOS release](https://github.com/Endcord/endcord-mobile/releases/tag/ios-v1.0.7) also has a rootless `.deb` and
-`Endcord.dylib`, to inject into your own decrypted Discord IPA (Discord 332 or newer) with Substrate or ElleKit included.
+`Shyncord.dylib`, to inject into your own decrypted Discord IPA (Discord 332 or newer) with Substrate or ElleKit included.
 
 </details>
 

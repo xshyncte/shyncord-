@@ -14,7 +14,7 @@ import org.koin.core.component.inject
 import java.io.File
 
 /**
- * Downloads the Endcord Xposed module published by the Build workflow to the `builds-next` branch. The module is
+ * Downloads the Shyncord Xposed module published by the Build workflow to the `builds-next` branch. The module is
  * native code that goes into Discord, so it's only taken when the signed release next to it lists it, by size and
  * SHA-256, and it's fetched from the address of that build itself.
  */
@@ -47,7 +47,7 @@ class DownloadModStep(
                 runner.logger.i("The published build is signed release ${it.sequence}")
             }
         } else {
-            // Said every time, not only in the log: nothing checks this file against Endcord's signed release
+            // Said every time, not only in the log: nothing checks this file against Shyncord's signed release
             runner.logger.i("Using the module at $destination as it is; it isn't checked against the signed release")
             mainThread { context.showToast(R.string.msg_unsigned_module) }
         }
@@ -63,7 +63,7 @@ class DownloadModStep(
     }
 
     private companion object {
-        const val LOADER_FILE = "endcord-xposed.apk"
+        const val LOADER_FILE = "shyncord-xposed.apk"
     }
 
 }

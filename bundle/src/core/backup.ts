@@ -153,12 +153,12 @@ export function parseBackup(text: string): Backup {
     try {
         parsed = JSON.parse(text);
     } catch {
-        throw new Error(t("This file isn't an Endcord backup"));
+        throw new Error(t("This file isn't a Shyncord backup"));
     }
     if (!isPlainObject(parsed) || parsed.format !== FORMAT || typeof parsed.version !== "number") {
-        throw new Error(t("This file isn't an Endcord backup"));
+        throw new Error(t("This file isn't a Shyncord backup"));
     }
-    if (parsed.version > VERSION) throw new Error(t("This backup is from a newer Endcord. Update Endcord, then try again."));
+    if (parsed.version > VERSION) throw new Error(t("This backup is from a newer Shyncord. Update Shyncord, then try again."));
     if (!isSafe(parsed)) throw new Error(t("This backup is damaged and can't be restored"));
 
     const object = (value: unknown): JsonObject => isPlainObject(value) ? value : {};

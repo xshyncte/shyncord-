@@ -20,13 +20,13 @@
 
 using namespace facebook;
 
-#define LOADER_NAME @"EndcordTweak"
+#define LOADER_NAME @"ShyncordTweak"
 // The published bundle; endcord.v<version>.hbc next to it is the same bundle precompiled for that Hermes bytecode
 // version. A test build sets its own (ENDCORD_BUNDLE_URL in the Makefile).
 #ifdef ENDCORD_BUNDLE_URL
 #define BUNDLE_URL ENDCORD_BUNDLE_URL
 #else
-#define BUNDLE_URL @"https://raw.githubusercontent.com/Endcord/endcord-mobile/builds-next/endcord.min.js"
+#define BUNDLE_URL @"https://raw.githubusercontent.com/xshyncte/shyncord-/builds-next/endcord.min.js"
 #endif
 
 static LoaderConfig  *loaderConfig;
@@ -151,7 +151,7 @@ static BOOL savedBundleIsSigned(NSData *bundle)
 }
 
 /**
- * The saved bundle, if this Discord can run it and it came from where Endcord loads from now. After Discord moves to a
+ * The saved bundle, if this Discord can run it and it came from where Shyncord loads from now. After Discord moves to a
  * newer Hermes, the bytecode saved for the old one is as good as missing; so is a bundle from a custom URL that has
  * been turned off since, or the other way around. A published one has to match its signed release too.
  */
@@ -164,7 +164,7 @@ static NSData *usableSavedBundle(void)
     NSString *source = savedBundleSource()[0];
     if (source && ![[bundleURLs() valueForKey:@"absoluteString"] containsObject:source])
     {
-        BunnyLog(@"The saved bundle is from %@, which Endcord doesn't load from now", source);
+        BunnyLog(@"The saved bundle is from %@, which Shyncord doesn't load from now", source);
         return nil;
     }
     if (!canRunBundle(bundle, source ?: @"the saved bundle")) return nil;
@@ -404,7 +404,7 @@ static void forwardConsoleIfAsked(jsi::Runtime &runtime)
         [originalHook](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             if (count > 0 && args[0].isString())
             {
-                NSLog(@"[Endcord JS] %@", [JSI toNSString:args[0] runtime:rt]);
+                NSLog(@"[Shyncord JS] %@", [JSI toNSString:args[0] runtime:rt]);
             }
             if (originalHook->isObject() && originalHook->asObject(rt).isFunction(rt))
             {
@@ -509,14 +509,14 @@ static void executePreloads(jsi::Runtime &runtime, NSURL *pyoncordDir)
     }
 }
 
-static void loadEndcord(jsi::Runtime &runtime)
+static void loadShyncord(jsi::Runtime &runtime)
 {
     [loaderConfig loadConfig];
     forwardConsoleIfAsked(runtime);
     injectPreBundle(runtime);
 
     // Starts with the saved bundle and updates it for the next start. Without one (the first start, or Discord moved
-    // to a newer Hermes) this start waits for the download, so Endcord is there from the first time Discord opens.
+    // to a newer Hermes) this start waits for the download, so Shyncord is there from the first time Discord opens.
     NSData *bundle = usableSavedBundle();
     if (bundle)
     {
@@ -530,9 +530,9 @@ static void loadEndcord(jsi::Runtime &runtime)
 
     if (!bundle)
     {
-        showErrorAlert(@"Endcord couldn't load",
-                       releaseRefused ? @"The download didn't pass Endcord's security check, so it wasn't run."
-                                      : @"Endcord couldn't be downloaded. Check your connection and open Discord again.",
+        showErrorAlert(@"Shyncord couldn't load",
+                       releaseRefused ? @"The download didn't pass Shyncord's security check, so it wasn't run."
+                                      : @"Shyncord couldn't be downloaded. Check your connection and open Discord again.",
                        nil);
         return;
     }
@@ -540,7 +540,7 @@ static void loadEndcord(jsi::Runtime &runtime)
     NSString *error = [JSI evaluate:bundle tag:@"endcord:bundle" runtime:runtime];
     if (error)
     {
-        showErrorAlert(@"Endcord couldn't start",
+        showErrorAlert(@"Shyncord couldn't start",
                        [NSString stringWithFormat:@"%@\n\nShake your device for the recovery menu.",
                                                   [error componentsSeparatedByString:@"\n"].firstObject],
                        nil);
@@ -555,21 +555,21 @@ static void loadEndcord(jsi::Runtime &runtime)
 {
     %orig;
 
-    // Whatever goes wrong in Endcord, Discord itself starts
+    // Whatever goes wrong in Shyncord, Discord itself starts
     @try
     {
         try
         {
-            loadEndcord(runtime);
+            loadShyncord(runtime);
         }
         catch (const std::exception &e)
         {
-            BunnyLog(@"Loading Endcord threw %s", e.what());
+            BunnyLog(@"Loading Shyncord threw %s", e.what());
         }
     }
     @catch (NSException *exception)
     {
-        BunnyLog(@"Loading Endcord threw %@: %@", exception.name, exception.reason);
+        BunnyLog(@"Loading Shyncord threw %@: %@", exception.name, exception.reason);
     }
 }
 
@@ -612,8 +612,8 @@ static void loadEndcord(jsi::Runtime &runtime)
         if (!isRNNewArchEnabled() || !host || !class_getInstanceMethod(host, @selector(instance:didInitializeRuntime:)))
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                showErrorAlert(@"Discord is too old for Endcord",
-                              @"Endcord needs Discord 332 or newer.",
+                showErrorAlert(@"Discord is too old for Shyncord",
+                              @"Shyncord needs Discord 332 or newer.",
                               nil);
             });
             return;

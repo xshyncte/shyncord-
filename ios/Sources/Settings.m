@@ -9,7 +9,7 @@
 - (instancetype)initWithVersion:(NSString *)version {
     self = [super init];
     if (self) {
-        self.title = [NSString stringWithFormat:@"Endcord v%@ Recovery Menu", version];
+        self.title = [NSString stringWithFormat:@"Shyncord v%@ Recovery Menu", version];
     }
     return self;
 }
@@ -38,7 +38,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 9;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -61,8 +61,13 @@
         @{@"title" : @"Delete All Themes", @"icon" : @"trash", @"destructive" : @YES},
         @{@"title" : @"Delete All Mod Data", @"icon" : @"trash.fill", @"destructive" : @YES},
         @{@"title" : @"Open App Folder", @"icon" : @"folder", @"destructive" : @NO}, @{
-            @"title" : @"Open GitHub Issue",
-            @"icon" : @"exclamationmark.bubble",
+            @"title" : @"Discord Support Server",
+            @"icon" : @"bubble.left.and.bubble.right",
+            @"destructive" : @NO
+        },
+        @{
+            @"title" : @"Instagram (@batrummm)",
+            @"icon" : @"camera",
             @"destructive" : @NO
         }
     ];
@@ -117,12 +122,19 @@
             [self openDocumentsDirectory];
             break;
         case 8:
-            [self openGitHub];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://discord.gg/uchihaha"]
+                                               options:@{}
+                                     completionHandler:nil];
+            break;
+        case 9:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://instagram.com/batrummm"]
+                                               options:@{}
+                                     completionHandler:nil];
             break;
         }
     };
 
-    if (indexPath.row != 2 && indexPath.row != 7 && indexPath.row != 8) {
+    if (indexPath.row != 2 && indexPath.row != 7 && indexPath.row != 8 && indexPath.row != 9) {
         NSString *actionText;
         switch (indexPath.row) {
         case 1:
@@ -183,45 +195,6 @@
     NSURL *sharedUrl = [NSURL URLWithString:sharedPath];
     
     [[UIApplication sharedApplication] openURL:sharedUrl options:@{} completionHandler:nil];
-}
-
-- (void)openGitHub {
-    UIDevice *device      = [UIDevice currentDevice];
-    NSString *deviceId    = getDeviceIdentifier();
-    NSString *deviceModel = DEVICE_MODELS[deviceId] ?: deviceId;
-    NSString *appVersion =
-        [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-    NSString *buildNumber = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-
-    NSString *body =
-        [NSString stringWithFormat:@"### Device Information\n"
-                                    "- Device: %@\n"
-                                    "- iOS Version: %@\n"
-                                    "- Tweak Version: %@\n"
-                                    "- App Version: %@ (%@)\n"
-                                    "- Jailbroken: %@\n\n"
-                                    "### Issue Description\n"
-                                    "<!-- Describe your issue here -->\n\n"
-                                    "### Steps to Reproduce\n"
-                                    "1. \n2. \n3. \n\n"
-                                    "### Expected Behavior\n\n"
-                                    "### Actual Behavior\n",
-                                   deviceModel, device.systemVersion, PACKAGE_VERSION, appVersion,
-                                   buildNumber, isJailbroken ? @"Yes" : @"No"];
-
-    NSString *encodedTitle = [@"bug(iOS): "
-        stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet
-                                                               URLQueryAllowedCharacterSet]];
-    NSString *encodedBody =
-        [body stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet
-                                                                     URLQueryAllowedCharacterSet]];
-
-    NSString *urlString = [NSString
-        stringWithFormat:@"https://github.com/Endcord/endcord-mobile/issues/new?title=%@&body=%@",
-                         encodedTitle, encodedBody];
-
-    NSURL *url          = [NSURL URLWithString:urlString];
-    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
 }
 
 - (void)loadCustomBundle {

@@ -8,21 +8,57 @@
 // cached for minutes, each file on its own, so right after a deploy a new manifest can meet an old bundle; an address
 // of the commit itself never changes, so a manifest and the bundles it lists always come from the same build.
 //
-//   ENDCORD_RELEASE_KEY=<PEM private key> node scripts/sign-release.mjs <folder>
+//   ENDCORD_RELEASE_KEY=<private key PEM or base64-encoded PEM/DER> node scripts/sign-release.mjs <folder>
 
 import { createHash, createPrivateKey, createPublicKey, sign, verify } from "node:crypto";
 import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 const [folder] = process.argv.slice(2);
-const pem = process.env.ENDCORD_RELEASE_KEY;
-if (!folder || !pem) throw new Error("Usage: ENDCORD_RELEASE_KEY=<PEM> node scripts/sign-release.mjs <folder>");
+const privateKeyInput = process.env.ENDCORD_RELEASE_KEY;
+if (!folder || !privateKeyInput) throw new Error("Usage: ENDCORD_RELEASE_KEY=<private key> node scripts/sign-release.mjs <folder>");
 
-const key = createPrivateKey(pem);
+/** @param {string} input */
+function parsePrivateKey(input) {
+    const value = input.trim().replace(/\\r\\n|\\n/g, "\n");
+    const attempts = [() => createPrivateKey(value)];
+    const encoded = value.replace(/\s/g, "");
+    if (/^[A-Za-z0-9+/]+={0,2}$/.test(encoded) && encoded.length % 4 !== 1) {
+        const decoded = Buffer.from(encoded, "base64");
+        if (decoded.toString("base64").replace(/=+$/, "") === encoded.replace(/=+$/, "")) {
+            const decodedText = decoded.toString("utf8").trim();
+            if (decodedText.startsWith("-----BEGIN ")) {
+                attempts.push(() => createPrivateKey(decodedText));
+            } else {
+                attempts.push(
+                    () => createPrivateKey({ key: decoded, format: "der", type: "pkcs8" }),
+                    () => createPrivateKey({ key: decoded, format: "der", type: "sec1" }),
+                );
+            }
+        }
+    }
+
+    /** @type {unknown} */
+    let lastError;
+    for (const attempt of attempts) {
+        try {
+            return attempt();
+        } catch (error) {
+            lastError = error;
+        }
+    }
+    throw new Error(
+        "ENDCORD_RELEASE_KEY is not a readable private key. Set it to a PEM private key, " +
+        "a PEM with escaped newlines, or base64-encoded PEM/DER (PKCS#8 or SEC1). " +
+        `OpenSSL: ${lastError instanceof Error ? lastError.message : String(lastError)}`,
+    );
+}
+
+const key = parsePrivateKey(privateKeyInput);
 const baseUrl = process.env.ENDCORD_RELEASE_BASE_URL;
 /** @type {Record<string, { size: number; sha256: string; url?: string; }>} */
 const files = {};
-const PUBLISHED = /^(endcord(\.v\d+\.hbc|\.min\.js)|endcord-(xposed|installer|classic-installer)\.apk)$/;
+const PUBLISHED = /^(endcord(\.v\d+\.hbc|\.min\.js)|(?:endcord|shyncord)-(xposed|installer)\.apk|endcord-classic-installer\.apk)$/;
 for (const name of readdirSync(folder).filter(n => PUBLISHED.test(n)).sort()) {
     const file = path.join(folder, name);
     files[name] = {

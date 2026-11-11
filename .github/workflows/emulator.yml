@@ -57,7 +57,7 @@ jobs:
           chmod +x gradlew
           ./gradlew --no-daemon :app:assembleDebug -Pendcord.bundleUrl=http://10.0.2.2:4040/endcord.min.js \
             -Pendcord.releaseKey="$(cat ../../release-test.pub)" -Pendcord.requireSigned=true
-          cp app/build/outputs/apk/debug/app-debug.apk ../../serve/endcord-xposed.apk
+          cp app/build/outputs/apk/debug/app-debug.apk ../../serve/shyncord-xposed.apk
 
       - name: Sign the build
         # The bundle and the loader together, as the Build workflow signs them: the installer only patches in a loader
@@ -65,7 +65,7 @@ jobs:
         run: |
           ENDCORD_RELEASE_KEY="$(cat release-test.pem)" ENDCORD_RELEASE_PUBLIC_KEY_FILE=release-test.pub \
             ENDCORD_RELEASE_BASE_URL=http://10.0.2.2:4040/pinned/ node bundle/scripts/sign-release.mjs serve
-          mkdir serve/pinned && cp serve/endcord.min.js serve/endcord.v*.hbc serve/endcord-xposed.apk serve/pinned/
+          mkdir serve/pinned && cp serve/endcord.min.js serve/endcord.v*.hbc serve/shyncord-xposed.apk serve/pinned/
 
       - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
         with:
@@ -75,7 +75,7 @@ jobs:
         working-directory: android/installer
         run: |
           chmod +x gradlew
-          ./gradlew --no-daemon :app:assembleDebug -Pendcord.loaderUrl=http://10.0.2.2:4040/endcord-xposed.apk \
+          ./gradlew --no-daemon :app:assembleDebug -Pendcord.loaderUrl=http://10.0.2.2:4040/shyncord-xposed.apk \
             -Pendcord.releaseKey="$(cat ../../release-test.pub)"
           cp app/build/outputs/apk/debug/*.apk ../../installer.apk
 

@@ -32,9 +32,9 @@ val revengeScriptLoader by tweak {
 
 private fun runRevengeScripts(scope: InjectorScope, preloadsDir: File, mainScript: File) {
     val log = scope.tweakLog
-    log.i("Running Endcord custom scripts...")
+    log.i("Running Shyncord custom scripts...")
 
-    // Discord's start waits here. With a downloaded copy, Endcord starts from it at once and the update check carries on
+    // Discord's start waits here. With a downloaded copy, Shyncord starts from it at once and the update check carries on
     // in the background (an update that lands asks to reload); only the very first start waits for the download, and
     // the first after Discord moved to a Hermes that the saved bytecode doesn't run on.
     if (!RevengeUpdater.hasUsableBundle()) runBlocking {
@@ -60,7 +60,6 @@ private fun runRevengeScripts(scope: InjectorScope, preloadsDir: File, mainScrip
             scope.runAsset(RevengeConstants.FALLBACK_BUNDLE_ASSET)
         }
     } catch (e: Throwable) {
-        log.e("Unable to run Endcord scripts", e)
+        log.e("Unable to run Shyncord scripts", e)
     }
 }
-

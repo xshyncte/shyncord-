@@ -144,7 +144,7 @@ static void checkLoaderAndBridge(jsi::Runtime &rt)
                                                     stringProperty(rt, loader, "fontPatch"),
                                                     stringProperty(rt, loader, "storedTheme")];
     check(@"loader-identity",
-          [stringProperty(rt, loader, "loaderName") isEqualToString:@"EndcordTweak"] &&
+          [stringProperty(rt, loader, "loaderName") isEqualToString:@"ShyncordTweak"] &&
               [stringProperty(rt, loader, "hasThemeSupport") isEqualToString:@"true"] &&
               [stringProperty(rt, loader, "fontPatch") isEqualToString:@"2"],
           identity);
@@ -155,7 +155,7 @@ static void checkLoaderAndBridge(jsi::Runtime &rt)
         jsi::Function call = rt.global().getPropertyAsFunction(rt, "__ENDCORD_LOADER_CALL__");
         jsi::Object response = call.call(rt, loaderPayload(rt, "revenge.info", jsi::Array(rt, 0))).asObject(rt);
         jsi::Object result = response.getProperty(rt, "result").asObject(rt);
-        check(@"bridge-sync", [stringProperty(rt, result, "name") isEqualToString:@"EndcordTweak"],
+        check(@"bridge-sync", [stringProperty(rt, result, "name") isEqualToString:@"ShyncordTweak"],
               [NSString stringWithFormat:@"revenge.info = %@ %@", stringProperty(rt, result, "name"),
                                          stringProperty(rt, result, "version")]);
 
@@ -211,7 +211,7 @@ static void checkLoaderAndBridge(jsi::Runtime &rt)
                 return jsi::Value::undefined();
             }));
         rt.drainMicrotasks();
-        check(@"bridge-async", *answer == "EndcordTweak", [NSString stringWithUTF8String:answer->c_str()]);
+        check(@"bridge-async", *answer == "ShyncordTweak", [NSString stringWithUTF8String:answer->c_str()]);
     }
     catch (const std::exception &e)
     {
@@ -707,11 +707,11 @@ static void runScenario(jsi::Runtime &rt)
         }
         else if ([scenario isEqualToString:@"offline-nothing"] || [scenario isEqualToString:@"signed-required-missing"])
         {
-            check(@"alert", [alert.title isEqualToString:@"Endcord couldn't load"], alert.title ?: @"no alert");
+            check(@"alert", [alert.title isEqualToString:@"Shyncord couldn't load"], alert.title ?: @"no alert");
         }
         else if ([scenario isEqualToString:@"bundle-throws"])
         {
-            check(@"alert", [alert.title isEqualToString:@"Endcord couldn't start"] &&
+            check(@"alert", [alert.title isEqualToString:@"Shyncord couldn't start"] &&
                                 [alert.message containsString:@"boom"],
                   [NSString stringWithFormat:@"%@: %@", alert.title, alert.message]);
         }
@@ -851,7 +851,7 @@ int main(int argc, char *argv[])
             if ([arg hasPrefix:@"--scenario="]) scenario = [arg substringFromIndex:11];
         }
         // As if Discord had been injected with it: before the app starts
-        NSString *tweak = [NSBundle.mainBundle.privateFrameworksPath stringByAppendingPathComponent:@"Endcord.dylib"];
+        NSString *tweak = [NSBundle.mainBundle.privateFrameworksPath stringByAppendingPathComponent:@"Shyncord.dylib"];
         if (!dlopen(tweak.fileSystemRepresentation, RTLD_NOW))
         {
             printf("RESULT FAIL %s load-tweak: %s\nDONE %s failures=1\n", scenario.UTF8String, dlerror(),

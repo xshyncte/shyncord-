@@ -17,7 +17,7 @@ function lastSeenText(userId: string): string {
     const status = getStore("PresenceStore")?.getStatus?.(userId);
     if (status && status !== "offline") return t("Online now");
     const at = lastOnline.users?.[userId];
-    return at ? t("Last online {time}", { time: new Date(at).toLocaleString() }) : t("Not seen online since Endcord started watching");
+    return at ? t("Last online {time}", { time: new Date(at).toLocaleString() }) : t("Not seen online since Shyncord started watching");
 }
 
 export default definePlugin({

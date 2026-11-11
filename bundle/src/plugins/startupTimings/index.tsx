@@ -31,7 +31,7 @@ function TimingsPage() {
 export default definePlugin({
     id: "endcord.startup-timings",
     name: "StartupTimings",
-    description: tx("Shows how long Endcord and each of its plugins took to start, in the plugin's settings"),
+    description: tx("Shows how long Shyncord and each of its plugins took to start, in the plugin's settings"),
     icon: "TimerIcon",
     tags: ["Utility"],
     SettingsComponent: TimingsPage,

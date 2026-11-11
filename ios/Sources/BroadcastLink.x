@@ -365,7 +365,7 @@ static BOOL startLoopback(DCDBroadcastSocketServer *server)
     %orig;
     if (!linkFailure) return;
 
-    NSString *reason = [NSString stringWithFormat:@"Endcord couldn't reach the app (%@)", linkFailure];
+    NSString *reason = [NSString stringWithFormat:@"Shyncord couldn't reach the app (%@)", linkFailure];
     [self finishBroadcastWithError:[NSError errorWithDomain:@"com.endcord.broadcast" code:1
                                                    userInfo:@{NSLocalizedDescriptionKey : reason}]];
 }

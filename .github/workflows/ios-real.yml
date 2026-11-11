@@ -1,6 +1,6 @@
 name: iOS real Discord
 
-# The real iOS Discord on the simulator, with Endcord's self-test (ios/Tests/real-discord.sh). On ios-real/ branches
+# The real iOS Discord on the simulator, with Shyncord's self-test (ios/Tests/real-discord.sh). On ios-real/ branches
 # only; nothing is published, and the IPA stays in the run. Results land on test-results/<branch>.
 on:
   push:
@@ -43,10 +43,10 @@ jobs:
         shell: bash
         run: |
           export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
-          make TARGET=simulator:clang:latest:15.0 ARCHS=arm64 Endcord_USE_SUBSTRATE=0 TARGET_CODESIGN_FLAGS="-f -s -" \
+          make TARGET=simulator:clang:latest:15.0 ARCHS=arm64 Shyncord_USE_SUBSTRATE=0 TARGET_CODESIGN_FLAGS="-f -s -" \
             ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js ENDCORD_RELEASE_KEY="$(cat Tests/release-test-key.pub)" \
             2>&1 | tee ../results/tweak-build.log
-          cp "$(find .theos/obj -name Endcord.dylib | head -n 1)" ../Endcord-simulator.dylib
+          cp "$(find .theos/obj -name Shyncord.dylib | head -n 1)" ../Shyncord-simulator.dylib
       - name: Run Discord
         shell: bash
         run: |
@@ -55,7 +55,7 @@ jobs:
             ENDCORD_RELEASE_BASE_URL=http://127.0.0.1:4040/pinned/ node bundle/scripts/sign-release.mjs serve
           for file in serve/endcord.min.js serve/endcord.v*.hbc; do cp "$file" "serve/pinned-$(basename "$file")"; done
           curl -fsSL --retry 3 -o discord.ipa "$IPA_URL"
-          bash ios/Tests/real-discord.sh discord.ipa Endcord-simulator.dylib serve results
+          bash ios/Tests/real-discord.sh discord.ipa Shyncord-simulator.dylib serve results
       - name: Save the results
         if: always()
         shell: bash
