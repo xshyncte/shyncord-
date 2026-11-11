@@ -1,0 +1,11 @@
+{
+  "bundle": "endcord.min.js",
+  "bytecode": ["endcord.v98.hbc","endcord.v99.hbc"],
+  "loader": "shyncord-xposed.apk",
+  "installer": "shyncord-installer.apk",
+  "classicInstaller": null,
+  "loaderVersion": "1.0.0",
+  "loaderVersionCode": 1,
+  "commit": "ebf385401e11af774a8f77e34891c6afb9aa0adc",
+  "builtAt": "2026-11-11T00:19:09Z"
+}
